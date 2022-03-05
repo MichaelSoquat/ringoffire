@@ -47,12 +47,12 @@ export class GameComponent implements OnInit {
 
   }
   takeCard() {
-    if(this.game.stack.length == 0) {
+    if (this.game.stack.length == 0) {
       this.gameOver = true;
     } else {
 
 
-      if (!this.game.pickCardAnimation) {
+      if (!this.game.pickCardAnimation && this.game.players.length > 0) {
 
 
         this.game.currentCard = this.game.stack.pop();
@@ -68,6 +68,8 @@ export class GameComponent implements OnInit {
           this.game.pickCardAnimation = false;
           this.saveGame();
         }, 1000);
+      } else {
+        alert('At least select one player to start the game!')
       }
     }
   }
@@ -80,10 +82,11 @@ export class GameComponent implements OnInit {
         if (change == 'DELETE') {
           this.game.player_images.splice(playerId, 1);
           this.game.players.splice(playerId, 1);
-        } else {
 
+        } else {
+          this.game.player_images[playerId] = change;
         }
-        this.game.player_images[playerId] = change;
+
       }
       this.saveGame();
     });
