@@ -3,3 +3,15 @@ mat-card {
         min-height: 120px;
     }
 }
+
+@media (max-width: 950px) {
+    .size-height {
+        height: 120px !important;
+    }
+}
+
+@media(max-width: 450px) {
+    mat-card-content {
+        width: 70%;
+    }
+}
